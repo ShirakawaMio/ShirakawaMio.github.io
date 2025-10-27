@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mio Liu - About Me</title>
+  <style>
+    /* ------------------------------
+       GLOBAL STYLE
+    ------------------------------ */
+    :root {
+      --bg: #f8f9fa;
+      --text: #1e1e1e;
+      --accent: #007aff;
+      --muted: #6c757d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    section {
+      padding: 80px 10%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* ------------------------------
+       NAVIGATION
+    ------------------------------ */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      backdrop-filter: blur(6px);
+      background: rgba(255, 255, 255, 0.7);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 10%;
+      z-index: 10;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    header h1 {
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+    }
+
+    nav a {
+      margin-left: 20px;
+      font-size: 0.9rem;
+      color: var(--text);
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* ------------------------------
+       HERO
+    ------------------------------ */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 10%;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5em;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 500px;
+      margin-bottom: 1.5em;
+    }
+
+    .hero .btn-group a {
+      display: inline-block;
+      padding: 10px 18px;
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      margin-right: 10px;
+      transition: all 0.2s;
+    }
+
+    .hero .btn-group a:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* ------------------------------
+       ABOUT
+    ------------------------------ */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .timeline {
+      border-left: 2px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .timeline-item {
+      margin-bottom: 1.5em;
+    }
+
+    .timeline-item h4 {
+      margin-bottom: 0.2em;
+    }
+
+    /* ------------------------------
+       SKILLS
+    ------------------------------ */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 1em;
+    }
+
+    .skill {
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      transition: 0.2s;
+    }
+
+    .skill:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* ------------------------------
+       PROJECTS
+    ------------------------------ */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 20px;
+      background: white;
+      transition: 0.2s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .project-card h4 {
+      margin-bottom: 0.3em;
+    }
+
+    .project-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.6em;
+    }
+
+    /* ------------------------------
+       BLOG
+    ------------------------------ */
+    .blog {
+      display: grid;
+      gap: 20px;
+    }
+
+    .post {
+      border-left: 3px solid var(--accent);
+      padding-left: 15px;
+    }
+
+    .post h4 {
+      margin-bottom: 0.2em;
+    }
+
+    .post p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ------------------------------
+       CONTACT
+    ------------------------------ */
+    .contact-links a {
+      display: inline-block;
+      margin-right: 15px;
+      color: var(--text);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 10%;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid #e0e0e0;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .about {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Mio Liu</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Hi, I’m Mio.</h2>
+    <p>I build things with code and logic — from system-level programs to intelligent applications.</p>
+    <div class="btn-group">
+      <a href="#projects">View Projects</a>
+      <a href="cv.pdf">Download CV</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About</h2>
+    <div class="about">
+      <div>
+        <p>
+          I’m a Computer Science student at RWTH Aachen University, passionate about
+          programming languages, AI systems, and compiler design. I enjoy building minimal,
+          efficient, and meaningful software.
+        </p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>RWTH Aachen University</h4>
+          <p>B.Sc. in Computer Science · 2022–Present</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Research / Open Source</h4>
+          <p>Compiler & Systems Programming</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <span class="skill">C++</span>
+      <span class="skill">Rust</span>
+      <span class="skill">Python</span>
+      <span class="skill">SQL</span>
+      <span class="skill">Git</span>
+      <span class="skill">Docker</span>
+      <span class="skill">Linux</span>
+      <span class="skill">Neovim</span>
+      <span class="skill">React</span>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h4>StackClip</h4>
+        <p>A minimal clipboard manager for macOS built with Swift and SwiftUI.</p>
+        <a href="#">View on GitHub →</a>
+      </div>
+      <div class="project-card">
+        <h4>RustCC</h4>
+        <p>A minimal C compiler implemented in Rust targeting AArch64.</p>
+        <a href="#">View on GitHub →</a>
+      </div>
+      <div class="project-card">
+        <h4>StreetPlanner</h4>
+        <p>Qt-based visualization tool for Dijkstra and A* pathfinding.</p>
+        <a href="#">View on GitHub →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section id="blog">
+    <h2>Blog</h2>
+    <div class="blog">
+      <div class="post">
+        <h4><a href="#">AI Safety in 5G — A Lifecycle Perspective</a></h4>
+        <p>Exploring model safety and data integrity in adaptive beam management systems.</p>
+      </div>
+      <div class="post">
+        <h4><a href="#">Designing Minimal Compilers in Rust</a></h4>
+        <p>Notes on parsing, code generation, and SSA transformations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>You can reach me at:</p>
+    <div class="contact-links">
+      <a href="mailto:renxin@example.com">Email</a>
+      <a href="https://github.com/renxinliu">GitHub</a>
+      <a href="https://linkedin.com/in/renxinliu">LinkedIn</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Renxin Liu — Built with pure HTML & CSS
+  </footer>
+</body>
+</html>
